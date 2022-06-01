@@ -21,7 +21,6 @@ public class Config implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		Users ur1 = new Users(null,"Rodrigo","Rodrigo@gmail.com","91984054107","123");
 		Users ur2 = new Users(null,"Luzitito","luiz@gmail.com","91984054107","123");
-		
 		userRepository.saveAll(Arrays.asList(ur1,ur2));
 	}
 	
