@@ -1,36 +1,53 @@
-package com.io.RodrigoFlexa.Entity;
+package com.io.RodrigoFlexa.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Users implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long iD;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false,length = 150)
 	private String name;
+	
+	@Column(nullable = false,length = 150)
+	
 	private String email;
+	@Column(nullable = false,length = 150)
+	
 	private String phone;
+	@Column(nullable = false,length = 150)
+	
 	private String password;
 
-	public User() {
-
+	public Users() {
 	}
 
-	public User(Long iD, String name, String email, String phone, String password) {
-		this.iD = iD;
+	public Users(Integer iD, String name, String email, String phone, String password) {
+		this.id = iD;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 	}
 
-	public Long getiD() {
-		return iD;
+	public Integer getiD() {
+		return this.id;
 	}
 
-	public void setiD(Long iD) {
-		this.iD = iD;
+	public void setiD(Integer iD) {
+		this.id = iD;
 	}
 
 	public String getName() {
@@ -67,7 +84,7 @@ public class User implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(iD);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -78,7 +95,7 @@ public class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
-		return Objects.equals(iD, other.iD);
+		Users other = (Users) obj;
+		return Objects.equals(id, other.id);
 	}
 }
