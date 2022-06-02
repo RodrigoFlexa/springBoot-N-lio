@@ -1,40 +1,47 @@
 package com.io.RodrigoFlexa.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Users implements Serializable{
+@Table(name = "tb_user")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(nullable = false,length = 150)
-	private String name;
-	
-	@Column(nullable = false,length = 150)
-	
-	private String email;
-	@Column(nullable = false,length = 150)
-	
-	private String phone;
-	@Column(nullable = false,length = 150)
-	
-	private String password;
 
-	public Users() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	private String name;
+
+	private String email;
+
+	private String phone;
+
+	private String password;
+	
+	//pra não dar loop nas requisições
+	//nesse caso, não vai mostrar os pedidos relacionados ao cliente nas requisições
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
+	
+	public User() {
 	}
 
-	public Users(Integer iD, String name, String email, String phone, String password) {
+	public User(Integer iD, String name, String email, String phone, String password) {
 		this.id = iD;
 		this.name = name;
 		this.email = email;
@@ -95,7 +102,7 @@ public class Users implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Users other = (Users) obj;
+		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
 }

@@ -2,8 +2,8 @@ package com.io.RodrigoFlexa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.io.RodrigoFlexa.entity.Users;
+import com.io.RodrigoFlexa.entity.User;
 
-public interface UserRepository extends JpaRepository<Users, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }

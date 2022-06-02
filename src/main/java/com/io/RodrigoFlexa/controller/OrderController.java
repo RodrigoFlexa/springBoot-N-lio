@@ -9,31 +9,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.io.RodrigoFlexa.Service.UserService;
-import com.io.RodrigoFlexa.entity.User;
+import com.io.RodrigoFlexa.Service.OrderService;
+import com.io.RodrigoFlexa.entity.Order;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserController {
+@RequestMapping(value = "/orders")
+public class OrderController {
 	
 	@Autowired
-	private UserService userService;
+	private OrderService orderService;
 	
 	@GetMapping()
-	public ResponseEntity<List<User>> findAll(){
-		List<User> listUsers = userService.findAll();
-		return ResponseEntity.ok().body(listUsers);	
+	public ResponseEntity<List<Order>> findAll(){
+		List<Order> listOrders = orderService.findAll();
+		return ResponseEntity.ok().body(listOrders);	
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Integer id){
-		User ur = userService.findById(id);
-		return ResponseEntity.ok().body(ur);
+	public ResponseEntity<Order> findById(@PathVariable Integer id){
+		Order or = orderService.findById(id);
+		return ResponseEntity.ok().body(or);
 	}
 	
 	@GetMapping(value = "/count")
 	public ResponseEntity<Integer> getCount(){
-		return ResponseEntity.ok().body(userService.getCount());
+		return ResponseEntity.ok().body(orderService.getCount());
 	}
 }
 
